@@ -1,0 +1,11 @@
+version: '3'
+services:
+  loadbalancer:
+    container_name: nginx_lb
+    build: nginx/
+    ports:
+      - "8080:80"
+  web:
+    container_name: wordpress_cont
+    build: wordpress/
+        
