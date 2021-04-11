@@ -2,9 +2,6 @@ version: '3'
 services:
   loadbalancer:
     container_name: nginx_lb
-    volumes:
-    - ./code:/code
-    - ./site.conf:/etc/nginx/conf.d/site.conf
     build: nginx/
     ports:
       - "8080:80"
