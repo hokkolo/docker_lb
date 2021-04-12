@@ -13,9 +13,28 @@ services:
      - "80:80"
    links:
    - web1
+   - db
   web1:
    container_name: wordpress_cont
    build: wordpress/
    volumes:
    - ./wordpress/docroot:/var/www/html
-        
+   links:
+   - db
+   environment:
+     WORDPRESS_DB_HOST: db:3306
+     WORDPRESS_DB_USER: wordpress123
+     WORDPRESS_DB_PASSWORD: wordpress123
+     WORDPRESS_DB_NAME: wordpress
+  db:
+   image: mysql:latest
+   container_name: database
+   volumes:
+   - ./database/data:/var/lib/mysql
+   - ./database/conf.d:/etc/mysql/conf.d
+   environment:
+     MYSQL_ROOT_PASSWORD: redhat
+     MYSQL_DATABASE: wordpress
+     MYSQL_USER: wordpress123
+     MYSQL_PASSWORD: wordpress123
+                                       
