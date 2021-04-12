@@ -1,17 +1,21 @@
-loadbalancer:
- image: nginx:latest
- container_name: nginx_lb
- volumes:
- - ./nginx/code:/code
- - ./nginx/wordpress.conf:/etc/nginx/conf.d/wordpress.conf
- - ./nginx/proxy.conf:/etc/nginx/conf.d/proxy.conf
- ports:
-   - "80:80"
- links:
- - web1
-web1:
- container_name: wordpress_cont
- build: wordpress/
- volumes:
- - ./wordpress/docroot:/var/www/html
+version: '3.1'
+
+services:
+  loadbalancer:
+   image: nginx:latest
+   container_name: nginx_lb
+   volumes:
+   - ./nginx/code:/code
+   - ./nginx/core.conf:/etc/nginx/conf.d/core.conf
+   - ./nginx/proxy.conf:/etc/nginx/conf.d/proxy.conf
+   - ./nginx/wordpress.conf:/etc/nginx/conf.d/wordpress.conf
+   ports:
+     - "80:80"
+   links:
+   - web1
+  web1:
+   container_name: wordpress_cont
+   build: wordpress/
+   volumes:
+   - ./wordpress/docroot:/var/www/html
         
