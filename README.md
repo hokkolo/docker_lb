@@ -8,3 +8,5 @@ Deploying E-commerce website using microservice architecture.
 
 # In Depth
 Detailed on https://hokkolo.medium.com/reverse-proxy-on-nginx-docker-36d7fcf43e18
+
+Can be used to host multiple app instances. Only required to update the Nginx conf and docker-compose.yml.
